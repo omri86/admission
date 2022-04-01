@@ -1,9 +1,9 @@
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
-  name: "tw-validating-webhook"
+  name: "validating-webhook"
 webhooks:
-  - name: "validating-webhook.twistlock.com"
+  - name: "validating-webhook"
     admissionReviewVersions: ["v1", "v1beta1"] # Specify what versions of AdmissionReview objects are accepted
     sideEffects: None # sideEffects must be set to None or NoneOnDryRun
     failurePolicy: Ignore # Default failurePolicy is Fail
