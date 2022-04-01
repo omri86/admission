@@ -1,0 +1,17 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: "tw-validating-webhook"
+webhooks:
+  - name: "validating-webhook.twistlock.com"
+    admissionReviewVersions: ["v1", "v1beta1"] # Specify what versions of AdmissionReview objects are accepted
+    sideEffects: None # sideEffects must be set to None or NoneOnDryRun
+    failurePolicy: Ignore # Default failurePolicy is Fail
+    rules:
+      - operations: ["CREATE", "UPDATE", "CONNECT"]
+        apiGroups: ["*"]
+        apiVersions: ["*"]
+        resources: ["*/*"]
+    clientConfig:
+      url: "https://127.0.0.1:8080"
+      caBundle: "${CA_BUNDLE}"
